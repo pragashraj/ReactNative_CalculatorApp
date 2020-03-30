@@ -4,12 +4,15 @@ import styles from './components/styles'
 
 class App extends Component{
   state={
-    calculation:''
+    calculation:'',
+    result:"",
+    op:['>','/','*','-','+']
+
   }
 
   handlePress(e){
     if(e=="="){
-      return
+      return this.calculate()
     }
 
     this.setState({
@@ -17,9 +20,18 @@ class App extends Component{
     })
   }
 
+  calculate(){
+    let calculationText=this.state.calculation
+    const lastChar=calculationText.split('').pop()
+    if(this.state.op.indexOf(lastChar)>0) return
+    this.setState({
+      result:eval(calculationText)
+    })
+  }
+
   handleOperatorsPress(e){
     if(this.state.calculation==""){
-      return
+      return (this.setState({result:''}))
     }
     switch(e){
         case '>':this.handleBackPress()
@@ -28,6 +40,8 @@ class App extends Component{
         case '*':
         case '-':
         case '+':
+        const lastChar=this.state.calculation.split('').pop()
+        if(this.state.op.indexOf(lastChar)>0) return
         this.setState({
           calculation:this.state.calculation+e
         })
@@ -59,11 +73,10 @@ class App extends Component{
     
 
         let col=[]
-        let op=['>','/','*','-','+']
         for(let i=0;i<5;i++){
           col.push(
-              <TouchableOpacity style={styles.btn} onPress={()=>this.handleOperatorsPress(op[i])}>
-                <Text style={styles.btnText}>{op[i]}</Text>
+              <TouchableOpacity style={styles.btn} onPress={()=>this.handleOperatorsPress(this.state.op[i])}>
+                <Text style={styles.opText}>{this.state.op[i]}</Text>
               </TouchableOpacity>
           )
         }
@@ -74,7 +87,11 @@ class App extends Component{
           <View style={styles.calculation}>
               <Text style={styles.calculationText}> {this.state.calculation}</Text> 
           </View>
-          <View style={styles.result}></View>
+
+          <View style={styles.result}>
+              <Text style={styles.resultText}> {this.state.result}</Text>              
+          </View>
+
           <View style={styles.buttons}>
                 <View style={styles.numbers}>
                       {rows}                

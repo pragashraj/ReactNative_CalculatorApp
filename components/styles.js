@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   
     calculation:{
       flex:2,
-      backgroundColor:'pink',
+      backgroundColor:'#434343',
       justifyContent:'center',
       alignItems:'flex-end',
     },
@@ -19,7 +19,13 @@ const styles = StyleSheet.create({
   
     result:{
       flex:1,
-      backgroundColor:'green'
+      backgroundColor:'#434343'
+    },
+
+    resultText:{
+      fontSize:50,
+      alignSelf:'flex-end',
+      color:'white'
     },
     buttons:{
       flex:7,
@@ -30,8 +36,8 @@ const styles = StyleSheet.create({
     },
     operators:{
       flex:1,
-      backgroundColor:'orange'
     },
+
     row:{
       flex:1,
       backgroundColor:'white',
@@ -41,17 +47,21 @@ const styles = StyleSheet.create({
     btn:{
       flex:1,
       alignItems:'center',
-      justifyContent:'center'
+      justifyContent:'center',
     },
     
     btnText:{
       fontSize:43,
-      color:'black'
+      color:'black',
     },
   
+    opText:{
+      fontSize:43,
+      color:'white'
+    },
     operator:{
       flex:1,
-      backgroundColor:'yellow'
+      backgroundColor:'#636363'
     }
   
   
